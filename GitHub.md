@@ -86,3 +86,58 @@ GitHub is a cloud-based platform that hosts Git repositories, enabling collabora
 1. **Clone the repository:**
    ```bash
    git clone https://github.com/username/repo.git
+
+# Deploy Vite + React Project to GitHub Pages
+
+Follow these steps to deploy your Vite + React project to GitHub Pages.
+
+---
+
+## Step 1: Install `gh-pages`
+
+Install the `gh-pages` package to help deploy your app:
+
+```bash
+npm install gh-pages --save-dev
+```
+
+## Step 2: Update `vite.config.js`
+
+Add the `base` property to your `vite.config.js` file to ensure assets load correctly:
+
+```javascript
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+
+export default defineConfig({
+  plugins: [react()],
+  base: '/your-repo-name/', // Replace with your repository name
+});
+```
+## Step 3: Update `package.json`
+
+Add the following scripts to your `package.json`:
+
+```json
+"scripts": {
+  "predeploy": "npm run build",
+  "deploy": "gh-pages -d dist"
+}
+```
+
+## Step 4: Deploy to GitHub Pages
+
+Run the following command to deploy your app:
+
+```bash
+npm run deploy
+```
+
+## Step 5: Enable GitHub Pages
+
+1. Go to your GitHub repository.
+2. Click on **Settings** > **Pages**.
+3. Under **Source**, select the `gh-pages` branch and the `/(root)` folder.
+4. Click **Save**.
+
+
